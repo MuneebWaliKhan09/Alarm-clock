@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/669abd9149.js" crossorigin="anonymous"></script>
+    <title>Audio</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(rgb(10, 137, 255), rgb(0, 0, 0));
+        }
+
+        .cont {
+            max-width: 438px;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+
+        .cont h1 {
+            color: rgb(255, 255, 255);
+            font-size: 40px;
+            padding: 10px 80px;
+            border-radius: 10px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            background: #0c5cd3;
+            border: 20px solid rgb(7 106 255);
+            transition: 0.5s;
+        }
+
+        .cont h1:hover {
+            box-shadow: 1px 0px 12px 12px rgba(22, 96, 255, 0.473);
+            transition: 0.5s;
+        }
+
+        .main {
+            background: #0c5cd3;
+            width: 100%;
+            min-height: 358px;
+            border-radius: 10px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 29px;
+        }
+
+        .innertimer {
+            color: white;
+        }
+
+        .bellof {
+            width: 80px;
+        }
+
+        .main button {
+            padding: 9px 22px;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.5s;
+            background: transparent;
+            color: white;
+            transition: 0.5s;
+            border: 1px solid white;
+        }
+
+        .main button:hover {
+            background: #d5e4ff;
+            color: #132c52;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="cont">
+        <h1>Alarm Clock</h1>
+        <div class="main">
+            <span><img class="bellof" id="bell" src="/bell_of.svg" alt=""></span>
+            <div class="innertimer">
+                <h2><span id="mint">0</span> <span>:</span> <span id="sec">0</span></h2>
+            </div>
+            <button id="set">Set Alarm</button>
+            <button id="cls">Close Alarm</button>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+
+        var audio = new Audio("alrm.wav")
+
+
+        let set = document.getElementById("set");
+        let cls = document.getElementById("cls");
+        let mint = document.getElementById("mint");
+        let sec = document.getElementById("sec");
+        let bell = document.getElementById("bell");
+
+        set.onclick = () => {
+
+            let p = prompt("Type Time in seconds choose from here [5 , 10 , 15 , 20 ]");
+            p = Number.parseInt(p);
+
+            if (p == 10) {
+                alert("Your Alarm is set Now for 10 sec");
+
+                setInterval(() => {
+                    mint.innerHTML = p * 10 / 10;
+                    let a =  p--;
+                   if(a == 0){
+
+                        p++;
+                   }
+                }, 1000);
+
+
+                setTimeout(() => {
+                    audio.play();
+                    bell.src = "ring_bell.svg";
+                }, 10000);
+            }
+
+            else if (p == 5) {
+
+                alert("Your Alarm is set Now for 5 sec");
+
+                setInterval(() => {
+                    mint.innerHTML = p * 5 / 5;
+                    let b =  p--;
+                   if(b == 0){
+
+                        p++;
+                   }
+                }, 1000);
+
+
+                setTimeout(() => {
+                    audio.play();
+                    bell.src = "ring_bell.svg";
+                }, 5000);
+            }
+
+            else if (p == 15) {
+                alert("Your Alarm is set Now for 15 sec");
+
+                setInterval(() => {
+                    mint.innerHTML = p * 15 / 15;
+                    let c =  p--;
+                   if(c == 0){
+
+                        p++;
+                   }
+                }, 1000);
+
+
+                setTimeout(() => {
+                    audio.play();
+                    bell.src = "ring_bell.svg";
+                }, 15000);
+            }
+
+            else if (p == 20) {
+                alert("Your Alarm is set Now for 20 sec");
+
+                setInterval(() => {
+                    mint.innerHTML = p * 15 / 15;
+                   let d =  p--;
+                   if(d == 0){
+
+                        p++;
+                   }
+                }, 1000);
+
+                setTimeout(() => {
+                    audio.play();
+                    bell.src = "ring_bell.svg";
+                }, 20000);
+            }
+        }
+
+
+        cls.onclick = () => {
+            audio.pause();
+            alert("Alarm is paused");
+            bell.src = "bell_of.svg";
+            location.reload();
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
